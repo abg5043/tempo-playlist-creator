@@ -8,13 +8,12 @@ import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
-import Button from "@material-ui/core/Button";
 import Hidden from "@material-ui/core/Hidden";
-import Drawer from "@material-ui/core/Drawer";
 // @material-ui/icons
-import Menu from "@material-ui/icons/Menu";
+import EmailIcon from '@material-ui/icons/Email';
 // core components
 import styles from "assets/jss/material-kit-react/components/headerStyle.js";
+import {Tooltip, Typography} from "@material-ui/core";
 
 const useStyles = makeStyles(styles);
 
@@ -60,49 +59,27 @@ export default function Header(props) {
     [classes.absolute]: absolute,
     [classes.fixed]: fixed,
   });
-  const appNameComponent = <Button className={classes.title}>{appName}</Button>;
+
   return (
     <AppBar className={appBarClasses}>
       <Toolbar className={classes.container}>
-        {leftLinks !== undefined ? appNameComponent : null}
-        <div className={classes.flex}>
-          {leftLinks !== undefined ? (
-            <Hidden smDown implementation="css">
-              {leftLinks}
-            </Hidden>
-          ) : (
-            appNameComponent
-          )}
-        </div>
+        <Typography className={classes.title}>{appName}</Typography>
         <Hidden smDown implementation="css">
           {rightLinks}
         </Hidden>
         <Hidden mdUp>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerToggle}
-          >
-            <Menu />
-          </IconButton>
+          <Tooltip title="Contact">
+            <IconButton
+              aria-label="contact button"
+              href="mailto: aaron.b.grant@gmail.com"
+              color="transparent"
+              className={classes.navLink}
+            >
+              <EmailIcon />
+            </IconButton>
+          </Tooltip>
         </Hidden>
       </Toolbar>
-      <Hidden mdUp implementation="js">
-        <Drawer
-          variant="temporary"
-          anchor={"right"}
-          open={mobileOpen}
-          classes={{
-            paper: classes.drawerPaper,
-          }}
-          onClose={handleDrawerToggle}
-        >
-          <div className={classes.appResponsive}>
-            {leftLinks}
-            {rightLinks}
-          </div>
-        </Drawer>
-      </Hidden>
     </AppBar>
   );
 }
