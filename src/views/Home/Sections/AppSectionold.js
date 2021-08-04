@@ -1,34 +1,57 @@
-import React from "react";
+import React, {useState} from 'react';
 // nodejs library that concatenates classes
-import classNames from "classnames";
+import classNames from 'classnames';
 // @material-ui/core components
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from '@material-ui/core/styles';
 
 // @material-ui/icons
 
 // core components
-import GridContainer from "components/Grid/GridContainer.js";
-import GridItem from "components/Grid/GridItem.js";
-import Button from "components/CustomButtons/Button.js";
-import Card from "components/Card/Card.js";
-import CardBody from "components/Card/CardBody.js";
-import CardFooter from "components/Card/CardFooter.js";
+import GridContainer from 'components/Grid/GridContainer.js';
+import GridItem from 'components/Grid/GridItem.js';
+import Button from 'components/CustomButtons/Button.js';
+import Card from 'components/Card/Card.js';
+import CardBody from 'components/Card/CardBody.js';
+import CardFooter from 'components/Card/CardFooter.js';
 
-import styles from "assets/jss/material-kit-react/views/landingPageSections/teamStyle.js";
+import styles from 'assets/jss/material-kit-react/views/homePageSections/teamStyle.js';
 
-import team1 from "assets/img/faces/avatar.jpg";
-import team2 from "assets/img/faces/christian.jpg";
-import team3 from "assets/img/faces/kendall.jpg";
+import team1 from 'assets/img/faces/avatar.jpg';
+import team2 from 'assets/img/faces/christian.jpg';
+import team3 from 'assets/img/faces/kendall.jpg';
 
 const useStyles = makeStyles(styles);
 
-export default function AppSection() {
+export default function AppSectionold() {
+  const [albums, setAlbums] = useState();
+
   const classes = useStyles();
   const imageClasses = classNames(
     classes.imgRaised,
     classes.imgRoundedCircle,
-    classes.imgFluid
+    classes.imgFluid,
   );
+
+  const initiateGetResult = (searchTerm) => {
+    return async () => {
+      try {
+        const API_URL = `https://api.spotify.com/v1/search?query=${encodeURIComponent(
+            searchTerm
+        )}&type=album,playlist,artist`;
+
+        const result = await get(API_URL);
+        console.log(result);
+        const { albums, artists, playlists } = result;
+        setAlbums(albums);
+        setArtists(artists);
+        return setPlayList(playlists);
+      } catch (error) {
+        console.log('error', error);
+      }
+    };
+  };
+
+
   return (
     <div className={classes.section}>
       <h2 className={classes.title}>Here is our team</h2>
@@ -48,7 +71,11 @@ export default function AppSection() {
                 <p className={classes.description}>
                   You can write here details about one of your team members. You
                   can give more details about what they do. Feel free to add
-                  some <a href="#pablo">links</a> for people to be able to
+                  some
+                  {' '}
+                  <a href="#pablo">links</a>
+                  {' '}
+                  for people to be able to
                   follow them outside the site.
                 </p>
               </CardBody>
@@ -58,21 +85,21 @@ export default function AppSection() {
                   color="transparent"
                   className={classes.margin5}
                 >
-                  <i className={classes.socials + " fab fa-twitter"} />
+                  <i className={`${classes.socials} fab fa-twitter`} />
                 </Button>
                 <Button
                   justIcon
                   color="transparent"
                   className={classes.margin5}
                 >
-                  <i className={classes.socials + " fab fa-instagram"} />
+                  <i className={`${classes.socials} fab fa-instagram`} />
                 </Button>
                 <Button
                   justIcon
                   color="transparent"
                   className={classes.margin5}
                 >
-                  <i className={classes.socials + " fab fa-facebook"} />
+                  <i className={`${classes.socials} fab fa-facebook`} />
                 </Button>
               </CardFooter>
             </Card>
@@ -91,7 +118,11 @@ export default function AppSection() {
                 <p className={classes.description}>
                   You can write here details about one of your team members. You
                   can give more details about what they do. Feel free to add
-                  some <a href="#pablo">links</a> for people to be able to
+                  some
+                  {' '}
+                  <a href="#pablo">links</a>
+                  {' '}
+                  for people to be able to
                   follow them outside the site.
                 </p>
               </CardBody>
@@ -101,14 +132,14 @@ export default function AppSection() {
                   color="transparent"
                   className={classes.margin5}
                 >
-                  <i className={classes.socials + " fab fa-twitter"} />
+                  <i className={`${classes.socials} fab fa-twitter`} />
                 </Button>
                 <Button
                   justIcon
                   color="transparent"
                   className={classes.margin5}
                 >
-                  <i className={classes.socials + " fab fa-linkedin"} />
+                  <i className={`${classes.socials} fab fa-linkedin`} />
                 </Button>
               </CardFooter>
             </Card>
@@ -127,7 +158,11 @@ export default function AppSection() {
                 <p className={classes.description}>
                   You can write here details about one of your team members. You
                   can give more details about what they do. Feel free to add
-                  some <a href="#pablo">links</a> for people to be able to
+                  some
+                  {' '}
+                  <a href="#pablo">links</a>
+                  {' '}
+                  for people to be able to
                   follow them outside the site.
                 </p>
               </CardBody>
@@ -137,21 +172,21 @@ export default function AppSection() {
                   color="transparent"
                   className={classes.margin5}
                 >
-                  <i className={classes.socials + " fab fa-twitter"} />
+                  <i className={`${classes.socials} fab fa-twitter`} />
                 </Button>
                 <Button
                   justIcon
                   color="transparent"
                   className={classes.margin5}
                 >
-                  <i className={classes.socials + " fab fa-instagram"} />
+                  <i className={`${classes.socials} fab fa-instagram`} />
                 </Button>
                 <Button
                   justIcon
                   color="transparent"
                   className={classes.margin5}
                 >
-                  <i className={classes.socials + " fab fa-facebook"} />
+                  <i className={`${classes.socials} fab fa-facebook`} />
                 </Button>
               </CardFooter>
             </Card>

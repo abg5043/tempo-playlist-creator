@@ -1,23 +1,25 @@
-import React from "react";
+import React from 'react';
 // nodejs library to set properties for components
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 // @material-ui/core components
-import { makeStyles } from "@material-ui/core/styles";
-import Snack from "@material-ui/core/SnackbarContent";
-import IconButton from "@material-ui/core/IconButton";
-import Icon from "@material-ui/core/Icon";
+import { makeStyles } from '@material-ui/core/styles';
+import Snack from '@material-ui/core/SnackbarContent';
+import IconButton from '@material-ui/core/IconButton';
+import Icon from '@material-ui/core/Icon';
 // @material-ui/icons
-import Close from "@material-ui/icons/Close";
+import Close from '@material-ui/icons/Close';
 // core components
 
-import styles from "assets/jss/material-kit-react/components/snackbarContentStyle.js";
+import styles from 'assets/jss/material-kit-react/components/snackbarContentStyle.js';
 
 const useStyles = makeStyles(styles);
 
 export default function SnackbarContent(props) {
-  const { message, color, close, icon } = props;
+  const {
+    message, color, close, icon,
+  } = props;
   const classes = useStyles();
-  var action = [];
+  let action = [];
   const closeAlert = () => {
     setAlert(null);
   };
@@ -36,10 +38,10 @@ export default function SnackbarContent(props) {
   }
   let snackIcon = null;
   switch (typeof icon) {
-    case "object":
+    case 'object':
       snackIcon = <props.icon className={classes.icon} />;
       break;
-    case "string":
+    case 'string':
       snackIcon = <Icon className={classes.icon}>{props.icon}</Icon>;
       break;
     default:
@@ -48,25 +50,25 @@ export default function SnackbarContent(props) {
   }
   const [alert, setAlert] = React.useState(
     <Snack
-      message={
+      message={(
         <div>
           {snackIcon}
           {message}
           {close !== undefined ? action : null}
         </div>
-      }
+      )}
       classes={{
-        root: classes.root + " " + classes[color],
-        message: classes.message + " " + classes.container,
+        root: `${classes.root} ${classes[color]}`,
+        message: `${classes.message} ${classes.container}`,
       }}
-    />
+    />,
   );
   return alert;
 }
 
 SnackbarContent.propTypes = {
   message: PropTypes.node.isRequired,
-  color: PropTypes.oneOf(["info", "success", "warning", "danger", "primary"]),
+  color: PropTypes.oneOf(['info', 'success', 'warning', 'danger', 'primary']),
   close: PropTypes.bool,
   icon: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 };

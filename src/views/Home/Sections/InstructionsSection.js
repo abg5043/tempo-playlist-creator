@@ -1,19 +1,20 @@
-import React from "react";
+import React from 'react';
+
 // @material-ui/core components
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from '@material-ui/core/styles';
 
 // @material-ui/icons
-import Chat from "@material-ui/icons/Chat";
+import Chat from '@material-ui/icons/Chat';
 import MusicNoteIcon from '@material-ui/icons/MusicNote';
 import DirectionsRunIcon from '@material-ui/icons/DirectionsRun';
 import PlaylistAddIcon from '@material-ui/icons/PlaylistAdd';
 
 // core components
-import GridContainer from "components/Grid/GridContainer.js";
-import GridItem from "components/Grid/GridItem.js";
-import InfoArea from "components/InfoArea/InfoArea.js";
+import GridContainer from 'components/Grid/GridContainer.js';
+import GridItem from 'components/Grid/GridItem.js';
+import InfoArea from 'components/InfoArea/InfoArea.js';
 
-import styles from "assets/jss/material-kit-react/views/landingPageSections/productStyle.js";
+import styles from "assets/jss/material-kit-react/views/homePageSections/productStyle.js";
 
 const useStyles = makeStyles(styles);
 

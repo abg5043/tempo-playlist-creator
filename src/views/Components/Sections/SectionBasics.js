@@ -1,44 +1,44 @@
-import React from "react";
+import React from 'react';
 // plugin that creates slider
-import Slider from "nouislider";
+import Slider from 'nouislider';
 // @material-ui/core components
-import { makeStyles } from "@material-ui/core/styles";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
-import Radio from "@material-ui/core/Radio";
-import Switch from "@material-ui/core/Switch";
+import { makeStyles } from '@material-ui/core/styles';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import Radio from '@material-ui/core/Radio';
+import Switch from '@material-ui/core/Switch';
 // @material-ui/icons
-import Favorite from "@material-ui/icons/Favorite";
-import People from "@material-ui/icons/People";
-import Check from "@material-ui/icons/Check";
-import FiberManualRecord from "@material-ui/icons/FiberManualRecord";
+import Favorite from '@material-ui/icons/Favorite';
+import People from '@material-ui/icons/People';
+import Check from '@material-ui/icons/Check';
+import FiberManualRecord from '@material-ui/icons/FiberManualRecord';
 // core components
-import GridContainer from "components/Grid/GridContainer.js";
-import GridItem from "components/Grid/GridItem.js";
-import Button from "components/CustomButtons/Button.js";
-import CustomInput from "components/CustomInput/CustomInput.js";
-import CustomLinearProgress from "components/CustomLinearProgress/CustomLinearProgress.js";
-import Paginations from "components/Pagination/Pagination.js";
-import Badge from "components/Badge/Badge.js";
+import GridContainer from 'components/Grid/GridContainer.js';
+import GridItem from 'components/Grid/GridItem.js';
+import Button from 'components/CustomButtons/Button.js';
+import CustomInput from 'components/CustomInput/CustomInput.js';
+import CustomLinearProgress from 'components/CustomLinearProgress/CustomLinearProgress.js';
+import Paginations from 'components/Pagination/Pagination.js';
+import Badge from 'components/Badge/Badge.js';
 
-import styles from "assets/jss/material-kit-react/views/componentsSections/basicsStyle.js";
+import styles from 'assets/jss/material-kit-react/views/componentsSections/basicsStyle.js';
 
 const useStyles = makeStyles(styles);
 
 export default function SectionBasics() {
   const classes = useStyles();
   const [checked, setChecked] = React.useState([24, 22]);
-  const [selectedEnabled, setSelectedEnabled] = React.useState("b");
+  const [selectedEnabled, setSelectedEnabled] = React.useState('b');
   const [checkedA, setCheckedA] = React.useState(true);
   const [checkedB, setCheckedB] = React.useState(false);
   React.useEffect(() => {
     if (
       !document
-        .getElementById("sliderRegular")
-        .classList.contains("noUi-target")
+        .getElementById('sliderRegular')
+        .classList.contains('noUi-target')
     ) {
-      Slider.create(document.getElementById("sliderRegular"), {
+      Slider.create(document.getElementById('sliderRegular'), {
         start: [40],
         connect: [true, false],
         step: 1,
@@ -46,9 +46,9 @@ export default function SectionBasics() {
       });
     }
     if (
-      !document.getElementById("sliderDouble").classList.contains("noUi-target")
+      !document.getElementById('sliderDouble').classList.contains('noUi-target')
     ) {
-      Slider.create(document.getElementById("sliderDouble"), {
+      Slider.create(document.getElementById('sliderDouble'), {
         start: [20, 60],
         connect: [false, true, false],
         step: 1,
@@ -89,7 +89,9 @@ export default function SectionBasics() {
                 round
               </Button>
               <Button color="primary" round>
-                <Favorite className={classes.icons} /> with icon
+                <Favorite className={classes.icons} />
+                {' '}
+                with icon
               </Button>
               <Button justIcon round color="primary">
                 <Favorite className={classes.icons} />
@@ -142,7 +144,7 @@ export default function SectionBasics() {
               <CustomInput
                 id="regular"
                 inputProps={{
-                  placeholder: "Regular",
+                  placeholder: 'Regular',
                 }}
                 formControlProps={{
                   fullWidth: true,
@@ -221,13 +223,13 @@ export default function SectionBasics() {
               </div>
               <div
                 className={
-                  classes.checkboxAndRadio +
-                  " " +
-                  classes.checkboxAndRadioHorizontal
+                  `${classes.checkboxAndRadio
+                  } ${
+                    classes.checkboxAndRadioHorizontal}`
                 }
               >
                 <FormControlLabel
-                  control={
+                  control={(
                     <Checkbox
                       tabIndex={-1}
                       onClick={() => handleToggle(21)}
@@ -238,24 +240,24 @@ export default function SectionBasics() {
                         root: classes.checkRoot,
                       }}
                     />
-                  }
+                  )}
                   classes={{ label: classes.label, root: classes.labelRoot }}
                   label="Unchecked"
                 />
               </div>
               <div
                 className={
-                  classes.checkboxAndRadio +
-                  " " +
-                  classes.checkboxAndRadioHorizontal
+                  `${classes.checkboxAndRadio
+                  } ${
+                    classes.checkboxAndRadioHorizontal}`
                 }
               >
                 <FormControlLabel
-                  control={
+                  control={(
                     <Checkbox
                       tabIndex={-1}
                       onClick={() => handleToggle(22)}
-                      checked={checked.indexOf(22) !== -1 ? true : false}
+                      checked={checked.indexOf(22) !== -1}
                       checkedIcon={<Check className={classes.checkedIcon} />}
                       icon={<Check className={classes.uncheckedIcon} />}
                       classes={{
@@ -263,21 +265,21 @@ export default function SectionBasics() {
                         root: classes.checkRoot,
                       }}
                     />
-                  }
+                  )}
                   classes={{ label: classes.label, root: classes.labelRoot }}
                   label="Checked"
                 />
               </div>
               <div
                 className={
-                  classes.checkboxAndRadio +
-                  " " +
-                  classes.checkboxAndRadioHorizontal
+                  `${classes.checkboxAndRadio
+                  } ${
+                    classes.checkboxAndRadioHorizontal}`
                 }
               >
                 <FormControlLabel
                   disabled
-                  control={
+                  control={(
                     <Checkbox
                       tabIndex={-1}
                       checkedIcon={<Check className={classes.checkedIcon} />}
@@ -287,7 +289,7 @@ export default function SectionBasics() {
                         root: classes.checkRoot,
                       }}
                     />
-                  }
+                  )}
                   classes={{
                     label: classes.label,
                     disabled: classes.disabledCheckboxAndRadio,
@@ -298,17 +300,17 @@ export default function SectionBasics() {
               </div>
               <div
                 className={
-                  classes.checkboxAndRadio +
-                  " " +
-                  classes.checkboxAndRadioHorizontal
+                  `${classes.checkboxAndRadio
+                  } ${
+                    classes.checkboxAndRadioHorizontal}`
                 }
               >
                 <FormControlLabel
                   disabled
-                  control={
+                  control={(
                     <Checkbox
                       tabIndex={-1}
-                      checked={checked.indexOf(24) !== -1 ? true : false}
+                      checked={checked.indexOf(24) !== -1}
                       checkedIcon={<Check className={classes.checkedIcon} />}
                       icon={<Check className={classes.uncheckedIcon} />}
                       classes={{
@@ -316,7 +318,7 @@ export default function SectionBasics() {
                         root: classes.checkRoot,
                       }}
                     />
-                  }
+                  )}
                   classes={{
                     label: classes.label,
                     disabled: classes.disabledCheckboxAndRadio,
@@ -332,16 +334,16 @@ export default function SectionBasics() {
               </div>
               <div
                 className={
-                  classes.checkboxAndRadio +
-                  " " +
-                  classes.checkboxAndRadioHorizontal
+                  `${classes.checkboxAndRadio
+                  } ${
+                    classes.checkboxAndRadioHorizontal}`
                 }
               >
                 <FormControlLabel
-                  control={
+                  control={(
                     <Radio
-                      checked={selectedEnabled === "a"}
-                      onChange={() => setSelectedEnabled("a")}
+                      checked={selectedEnabled === 'a'}
+                      onChange={() => setSelectedEnabled('a')}
                       value="a"
                       name="radio button enabled"
                       aria-label="A"
@@ -356,7 +358,7 @@ export default function SectionBasics() {
                         root: classes.radioRoot,
                       }}
                     />
-                  }
+                  )}
                   classes={{
                     label: classes.label,
                     root: classes.labelRoot,
@@ -366,16 +368,16 @@ export default function SectionBasics() {
               </div>
               <div
                 className={
-                  classes.checkboxAndRadio +
-                  " " +
-                  classes.checkboxAndRadioHorizontal
+                  `${classes.checkboxAndRadio
+                  } ${
+                    classes.checkboxAndRadioHorizontal}`
                 }
               >
                 <FormControlLabel
-                  control={
+                  control={(
                     <Radio
-                      checked={selectedEnabled === "b"}
-                      onChange={() => setSelectedEnabled("b")}
+                      checked={selectedEnabled === 'b'}
+                      onChange={() => setSelectedEnabled('b')}
                       value="b"
                       name="radio button enabled"
                       aria-label="B"
@@ -390,7 +392,7 @@ export default function SectionBasics() {
                         root: classes.radioRoot,
                       }}
                     />
-                  }
+                  )}
                   classes={{
                     label: classes.label,
                     root: classes.labelRoot,
@@ -400,14 +402,14 @@ export default function SectionBasics() {
               </div>
               <div
                 className={
-                  classes.checkboxAndRadio +
-                  " " +
-                  classes.checkboxAndRadioHorizontal
+                  `${classes.checkboxAndRadio
+                  } ${
+                    classes.checkboxAndRadioHorizontal}`
                 }
               >
                 <FormControlLabel
                   disabled
-                  control={
+                  control={(
                     <Radio
                       checked={false}
                       value="a"
@@ -425,7 +427,7 @@ export default function SectionBasics() {
                         root: classes.radioRoot,
                       }}
                     />
-                  }
+                  )}
                   classes={{
                     label: classes.label,
                     root: classes.labelRoot,
@@ -435,16 +437,16 @@ export default function SectionBasics() {
               </div>
               <div
                 className={
-                  classes.checkboxAndRadio +
-                  " " +
-                  classes.checkboxAndRadioHorizontal
+                  `${classes.checkboxAndRadio
+                  } ${
+                    classes.checkboxAndRadioHorizontal}`
                 }
               >
                 <FormControlLabel
                   disabled
-                  control={
+                  control={(
                     <Radio
-                      checked={true}
+                      checked
                       value="b"
                       name="radio button disabled"
                       aria-label="B"
@@ -460,7 +462,7 @@ export default function SectionBasics() {
                         root: classes.radioRoot,
                       }}
                     />
-                  }
+                  )}
                   classes={{ label: classes.label, root: classes.labelRoot }}
                   label="Disabled Checked Radio"
                 />
@@ -472,7 +474,7 @@ export default function SectionBasics() {
               </div>
               <div>
                 <FormControlLabel
-                  control={
+                  control={(
                     <Switch
                       checked={checkedA}
                       onChange={(event) => setCheckedA(event.target.checked)}
@@ -484,7 +486,7 @@ export default function SectionBasics() {
                         track: classes.switchBar,
                       }}
                     />
-                  }
+                  )}
                   classes={{
                     label: classes.label,
                   }}
@@ -493,7 +495,7 @@ export default function SectionBasics() {
               </div>
               <div>
                 <FormControlLabel
-                  control={
+                  control={(
                     <Switch
                       checked={checkedB}
                       onChange={(event) => setCheckedB(event.target.checked)}
@@ -505,7 +507,7 @@ export default function SectionBasics() {
                         track: classes.switchBar,
                       }}
                     />
-                  }
+                  )}
                   classes={{
                     label: classes.label,
                   }}
@@ -536,19 +538,19 @@ export default function SectionBasics() {
                 variant="determinate"
                 color="success"
                 value={100}
-                style={{ width: "35%", display: "inline-block" }}
+                style={{ width: '35%', display: 'inline-block' }}
               />
               <CustomLinearProgress
                 variant="determinate"
                 color="warning"
                 value={100}
-                style={{ width: "20%", display: "inline-block" }}
+                style={{ width: '20%', display: 'inline-block' }}
               />
               <CustomLinearProgress
                 variant="determinate"
                 color="danger"
                 value={25}
-                style={{ width: "45%", display: "inline-block" }}
+                style={{ width: '45%', display: 'inline-block' }}
               />
             </GridItem>
             <GridItem xs={12} sm={12} md={6}>
@@ -558,25 +560,25 @@ export default function SectionBasics() {
               <Paginations
                 pages={[
                   { text: 1 },
-                  { text: "..." },
+                  { text: '...' },
                   { text: 5 },
                   { text: 6 },
                   { active: true, text: 7 },
                   { text: 8 },
                   { text: 9 },
-                  { text: "..." },
+                  { text: '...' },
                   { text: 12 },
                 ]}
               />
               <Paginations
                 pages={[
-                  { text: "PREV" },
+                  { text: 'PREV' },
                   { text: 1 },
                   { text: 2 },
                   { active: true, text: 3 },
                   { text: 4 },
                   { text: 5 },
-                  { text: "NEXT" },
+                  { text: 'NEXT' },
                 ]}
                 color="info"
               />

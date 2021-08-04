@@ -1,29 +1,26 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import { createBrowserHistory } from "history";
-import { Router, Route, Switch } from "react-router-dom";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 
-import "assets/scss/material-kit-react.scss?v=1.10.0";
+import 'assets/scss/material-kit-react.scss?v=1.10.0';
 
 // pages
-import Components from "views/Components/Components.js";
-import LandingPage from "views/LandingPage/LandingPage.js";
-import ProfilePage from "views/ProfilePage/ProfilePage.js";
-import LoginPage from "views/LoginPage/LoginPage.js";
-import NotFoundPage from "./views/LandingPage/NotFoundPage";
-
-var hist = createBrowserHistory();
+import Components from 'views/Components/Components.js';
+import LandingPage from 'views/LandingPage/LandingPage.js';
+import NotFoundPage from './views/NotFoundPage';
+import Home from "./views/Home/Home";
+import RedirectPage from "./views/RedirectPage";
 
 ReactDOM.render(
-  <Router history={hist}>
+  <BrowserRouter>
     <Switch>
+      <Route path="/home" component={Home} />
+      <Route path="/redirect" component={RedirectPage} />
       <Route path="/landing-page" component={LandingPage} />
-      <Route path="/profile-page" component={ProfilePage} />
-      <Route path="/login-page" component={LoginPage} />
-        <Route path="/n" component={NotFoundPage} />
-
-        <Route path="/" component={Components} />
+      <Route path="/components" component={Components} />
+      <Redirect exact from="/" to="/landing-page" />
+      <Route component={NotFoundPage} />
     </Switch>
-  </Router>,
-  document.getElementById("root")
+  </BrowserRouter>,
+  document.getElementById('root'),
 );
