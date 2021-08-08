@@ -18,6 +18,10 @@ import CardFooter from 'components/Card/CardFooter.js';
 
 import loginStyle from "../../../assets/jss/material-kit-react/views/landingPageSections/loginStyle";
 import spotifyLogo from 'assets/img/Spotify_Logo_RGB_Green.png';
+import {Scopes, SpotifyAuth} from "react-spotify-auth";
+
+const dev = !process.env.NODE_ENV || process.env.NODE_ENV === 'development'
+
 
 
 const useStyles = makeStyles(loginStyle);
@@ -43,7 +47,6 @@ export default function LoginSection() {
         <Grid align="center">
           <GridItem xs={8}  sm={8} md={6} >
             <Card plain>
-              <img src={spotifyLogo} alt="..." className={classes.imgFluid} />
               <h4 className={classes.cardTitle}>
                 Login to Spotify to get started
                 <br />
@@ -55,13 +58,17 @@ export default function LoginSection() {
                 </p>
               </CardBody>
               <CardFooter className={classes.justifyCenter}>
-                <Button
-                    variant="info"
-                    type="submit"
-                    onClick={handlLogin}
-                    color="primary"
-                > Login
-                </Button>
+                <SpotifyAuth
+                    redirectUri={
+                      'http://localhost:3000/redirect'
+                    }
+                    clientID='19e2d890bf8b4e5395b8c6053049d850'
+                    scopes={[
+                      Scopes.userReadPrivate,
+                      Scopes.userReadEmail,
+                      'user-top-read'
+                    ]}
+                />
               </CardFooter>
             </Card>
           </GridItem>
