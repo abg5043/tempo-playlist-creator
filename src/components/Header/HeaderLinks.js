@@ -14,7 +14,7 @@ import EmailIcon from '@material-ui/icons/Email';
 
 // core components
 import CustomDropdown from "components/CustomDropdown/CustomDropdown.js";
-import Button from "components/CustomButtons/Button.js";
+import Button from "components/CustomButtons/Button";
 
 import styles from "assets/jss/material-kit-react/components/headerLinksStyle.js";
 

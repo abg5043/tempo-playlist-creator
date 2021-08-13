@@ -9,9 +9,9 @@ import { makeStyles } from '@material-ui/core/styles';
 // core components
 import Header from 'components/Header/Header.js';
 import Footer from 'components/Footer/Footer.js';
-import GridContainer from 'components/Grid/GridContainer.js';
-import GridItem from 'components/Grid/GridItem.js';
-import Button from 'components/CustomButtons/Button.js';
+import GridContainer from 'components/Grid/GridContainer';
+import GridItem from 'components/Grid/GridItem';
+import Button from 'components/CustomButtons/Button';
 import Parallax from 'components/Parallax/Parallax.js';
 // sections for this page
 import HeaderLinks from 'components/Header/HeaderLinks.js';
@@ -25,7 +25,7 @@ import SectionTypography from './Sections/SectionTypography.js';
 import SectionJavascript from './Sections/SectionJavascript.js';
 import SectionCarousel from './Sections/SectionCarousel.js';
 import SectionCompletedExamples from './Sections/SectionCompletedExamples.js';
-import LoginSection from '../Home/Sections/LoginSection.js';
+import LoginSection from '../Home/Sections/LoginSection.jsx';
 import SectionExamples from './Sections/SectionExamples.js';
 import SectionDownload from './Sections/SectionDownload.js';
 

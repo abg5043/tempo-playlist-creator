@@ -1,7 +1,7 @@
 import { cardTitle, title } from 'assets/jss/material-kit-react.js';
 import imagesStyle from 'assets/jss/material-kit-react/imagesStyles.js';
 
-const loginStyle = {
+const appStyle = {
   section: {
     padding: '70px 0',
     textAlign: 'center',
@@ -28,9 +28,6 @@ const loginStyle = {
   justifyCenter: {
     justifyContent: 'center !important',
   },
-  alignCenter: {
-    alignItems: 'center',
-  },
   socials: {
     marginTop: '0',
     width: '100%',
@@ -47,4 +44,4 @@ const loginStyle = {
   },
 };
 
-export default loginStyle;
+export default appStyle;

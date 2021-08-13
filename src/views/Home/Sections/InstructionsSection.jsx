@@ -4,17 +4,16 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
 // @material-ui/icons
-import Chat from '@material-ui/icons/Chat';
 import MusicNoteIcon from '@material-ui/icons/MusicNote';
 import DirectionsRunIcon from '@material-ui/icons/DirectionsRun';
 import PlaylistAddIcon from '@material-ui/icons/PlaylistAdd';
 
 // core components
-import GridContainer from 'components/Grid/GridContainer.js';
-import GridItem from 'components/Grid/GridItem.js';
-import InfoArea from 'components/InfoArea/InfoArea.js';
+import GridContainer from 'components/Grid/GridContainer';
+import GridItem from 'components/Grid/GridItem';
+import InfoArea from 'components/InfoArea/InfoArea';
 
-import styles from "assets/jss/material-kit-react/views/homePageSections/productStyle.js";
+import styles from 'assets/jss/material-kit-react/views/homePageSections/instructionStyle';
 
 const useStyles = makeStyles(styles);
 
@@ -26,7 +25,8 @@ export default function InstructionsSection() {
         <GridItem xs={12} sm={12} md={8}>
           <h2 className={classes.title}>Instructions</h2>
           <h5 className={classes.description}>
-            Our app is simple to use. Just follow these three steps, then repeat as many times as you like!
+            Our app is simple to use. Just follow these three steps,
+            then repeat as many times as you like!
           </h5>
         </GridItem>
       </GridContainer>

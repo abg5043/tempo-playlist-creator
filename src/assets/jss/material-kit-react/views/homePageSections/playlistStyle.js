@@ -1,20 +1,28 @@
 import { title } from 'assets/jss/material-kit-react.js';
 
-const productStyle = {
+const playlistStyle = {
   section: {
     padding: '70px 0',
-    textAlign: 'center',
   },
   title: {
     ...title,
-    marginBottom: '1rem',
+    marginBottom: '50px',
     marginTop: '30px',
     minHeight: '32px',
     textDecoration: 'none',
+    textAlign: 'center',
   },
   description: {
     color: '#999',
+    textAlign: 'center',
+  },
+  textCenter: {
+    textAlign: 'center',
+  },
+  textArea: {
+    marginRight: '15px',
+    marginLeft: '15px',
   },
 };
 
-export default productStyle;
+export default playlistStyle;

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 // nodejs library that concatenates classes
 import classNames from 'classnames';
 // @material-ui/core components
@@ -7,14 +7,14 @@ import { makeStyles } from '@material-ui/core/styles';
 // @material-ui/icons
 
 // core components
-import GridContainer from 'components/Grid/GridContainer.js';
-import GridItem from 'components/Grid/GridItem.js';
-import Button from 'components/CustomButtons/Button.js';
-import Card from 'components/Card/Card.js';
-import CardBody from 'components/Card/CardBody.js';
-import CardFooter from 'components/Card/CardFooter.js';
+import GridContainer from 'components/Grid/GridContainer';
+import GridItem from 'components/Grid/GridItem';
+import Button from 'components/CustomButtons/Button';
+import Card from 'components/Card/Card';
+import CardBody from 'components/Card/CardBody';
+import CardFooter from 'components/Card/CardFooter';
 
-import styles from 'assets/jss/material-kit-react/views/homePageSections/teamStyle.js';
+import styles from 'assets/jss/material-kit-react/views/homePageSections/appStyle';
 
 import team1 from 'assets/img/faces/avatar.jpg';
 import team2 from 'assets/img/faces/christian.jpg';
@@ -22,35 +22,13 @@ import team3 from 'assets/img/faces/kendall.jpg';
 
 const useStyles = makeStyles(styles);
 
-export default function AppSectionold() {
-  const [albums, setAlbums] = useState();
-
+export default function AppSectionOld() {
   const classes = useStyles();
   const imageClasses = classNames(
     classes.imgRaised,
     classes.imgRoundedCircle,
     classes.imgFluid,
   );
-
-  const initiateGetResult = (searchTerm) => {
-    return async () => {
-      try {
-        const API_URL = `https://api.spotify.com/v1/search?query=${encodeURIComponent(
-            searchTerm
-        )}&type=album,playlist,artist`;
-
-        const result = await get(API_URL);
-        console.log(result);
-        const { albums, artists, playlists } = result;
-        setAlbums(albums);
-        setArtists(artists);
-        return setPlayList(playlists);
-      } catch (error) {
-        console.log('error', error);
-      }
-    };
-  };
-
 
   return (
     <div className={classes.section}>

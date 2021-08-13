@@ -1,4 +1,4 @@
-import { container, title } from 'assets/jss/material-kit-react.js';
+import { container, title, cardTitle } from 'assets/jss/material-kit-react.js';
 
 const landingPageStyle = {
   container: {
@@ -6,6 +6,7 @@ const landingPageStyle = {
     color: '#FFFFFF',
     ...container,
   },
+  cardTitle,
   title: {
     ...title,
     display: 'inline-block',
