@@ -73,7 +73,6 @@ export default function Home() {
           {Cookies.get('spotifyAuthToken') ? (
             <SpotifyApiContext.Provider value={spotifyAuthToken}>
               <AppSection token={spotifyAuthToken} />
-              <SectionPills />
             </SpotifyApiContext.Provider>
           ) : (
             <>

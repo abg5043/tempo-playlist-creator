@@ -35,6 +35,8 @@ export default function LoginSection() {
                   scopes={[
                     Scopes.userReadPrivate,
                     Scopes.userReadEmail,
+                    Scopes.playlistModifyPrivate,
+                    Scopes.playlistModifyPublic,
                     'user-top-read',
                   ]}
                 />
