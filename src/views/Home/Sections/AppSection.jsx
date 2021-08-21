@@ -1,97 +1,104 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-// nodejs library that concatenates classes
-import classNames from 'classnames';
-// @material-ui/core components
-import { makeStyles } from '@material-ui/core/styles';
-import { List, ListItem, Typography } from '@material-ui/core';
+import React, {useEffect, useState} from 'react';
+import {Form} from 'react-bootstrap';
 
-// @material-ui/icons
+// nodejs library that concatenates classes
+
+// @material-ui/core components
+import {makeStyles} from '@material-ui/core/styles';
 
 // core components
+//Sections for this page
 
 import styles from 'assets/jss/material-kit-react/views/homePageSections/appStyle';
+import Button from "../../../components/CustomButtons/Button";
+import {useQuery} from "react-query";
+
 
 const useStyles = makeStyles(styles);
 
 export default function AppSection(props) {
-  const [genres, setGenres] = useState({ selectedGenre: '', listOfGenresFromAPI: [] });
-  const [userInfo, setUserInfo] = useState();
-  const { token } = props;
+    const [genres, setGenres] = useState();
+    const [userId, setUserId] = useState();
 
-  const classes = useStyles();
+    const {token} = props;
 
-  const formatGenres = (genreArray) => {
-    const tempArray = [];
-    genreArray.forEach(
-        (genre) => {
-          tempArray.push(genre);
+    const classes = useStyles();
+
+    const formatGenres = (genreArray) => {
+        const tempArray = [];
+        genreArray.forEach(
+            (genre) => {
+                if(genre == 'r-n-b') {
+                    tempArray.push("R&B");
+                } else if (genre.indexOf('-', 2) != -1) {
+                    let tempStrArr = genre.split('-');
+                    tempStrArr[0] = tempStrArr[0].charAt(0).toUpperCase() + tempStrArr[0].slice(1);
+                    tempArray.push(tempStrArr.join(" "));
+                } else {
+                    tempArray.push(genre.charAt(0).toUpperCase() + genre.slice(1));
+                }
+            }
+        )
+        return tempArray;
+    }
+
+    useEffect(() => {
+        if (token && !userId && !genres) {
+            fetch('https://api.spotify.com/v1/recommendations/available-genre-seeds', {headers: {Authorization: `Bearer ${token}`}})
+                .then((response) => response.json())
+                .then (genreResponse => {
+                    setGenres(formatGenres(genreResponse.genres));
+            })
+
+            fetch('https://api.spotify.com/v1/me', { headers: { Authorization: `Bearer ${token}` } })
+                .then((response) => response.json())
+                .then((userInfo) => {
+                    setUserId(userInfo.id);
+                });
         }
-    )
-    console.log("GenreArray", tempArray)
-    return tempArray;
-  }
+    }, [token]);
 
-  useEffect(() => {
+/*    const {isLoading: genresLoading, error: genresError, data: genresData} = useQuery("genreSeeds", () =>
+        fetch('https://api.spotify.com/v1/recommendations/available-genre-seeds', {headers: {Authorization: `Bearer ${token}`}})
+            .then((response) => response.json())
+    );
 
-    if (token) {
-      axios({
-        method: 'GET',
-        url: 'https://api.spotify.com/v1/recommendations/available-genre-seeds',
-        headers: { Authorization: `Bearer ${token}` },
-      }).then (genreResponse => {
-        setGenres({
-          selectedGenre: genres.selectedGenre,
-          listOfGenresFromAPI: formatGenres(genreResponse.data.genres),
+    const {isLoading: userIdLoading, error: userIdError, data: userIdData} = useQuery("userId", () =>
+        fetch('https://api.spotify.com/v1/me', {headers: {Authorization: `Bearer ${token}`}})
+            .then((response) => response.json())
+    );*/
+
+    const createPlaylist = (userInfo) => {
+        fetch(`https://api.spotify.com/v1/users/${userInfo.id}/playlists`, {
+            method: 'POST',
+            body: JSON.stringify({
+                name: 'Test Playlist',
+                description: 'Super cool playlist if this works.',
+            }),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+                'Authorization': `Bearer ${token}`
+            },
         })
-      }).then( console.log("GENRES", genres.listOfGenresFromAPI));
-      /* .then (listItems = genres.listOfGenresFromAPI.map((genre) =>
-              // Correct! Key should be specified inside the array.
-              <ListItem>
-                <Typography className={classes.title}>{genre['name']}</Typography>
-              </ListItem>)
-          ); */
+            .then((response) => response.json())
+            .then((json) => console.log(json));
+    }
 
-      fetch('https://api.spotify.com/v1/me', { headers: { Authorization: `Bearer ${token}` } })
-          .then((response) => response.json())
-          .then((userInfo) => {
-            console.log(userInfo.id);
-          });
+    const testSubmit = (event) => {
+        console.log(genres)
     }
 
 
+    return (
+        <div className={classes.section}>
+            <h2 className={classes.title}>Choose Your Options</h2>
+            <Form onSubmit={testSubmit}>
+                <input value={bob} />
+                <Button type="submit">
+                    Submit
+                </Button>
+            </Form>
 
-
-  }, [token]);
-
-  const createPlaylist = (userInfo) => {
-    fetch(`https://api.spotify.com/v1/users/${userInfo.id}/playlists`, {
-      method: 'POST',
-      body: JSON.stringify({
-        name: 'Test Playlist',
-        description: 'Super cool playlist if this works.',
-      }),
-      headers: {
-        'Content-type': 'application/json; charset=UTF-8',
-        'Authorization': `Bearer ${token}`
-      },
-    })
-        .then((response) => response.json())
-        .then((json) => console.log(json));
-  }
-  console.log("Genres Done", genres);
-
-  return (
-    <div className={classes.section}>
-      <h2 className={classes.title}>Here is our team</h2>
-      <List>
-        {genres.listOfGenresFromAPI.map((genre) => (
-          <ListItem>
-            {genre}
-          </ListItem>
-        ))}
-
-      </List>
-    </div>
-  );
+        </div>
+    );
 }

@@ -74,7 +74,7 @@ export default function Header(props) {
             <IconButton
               aria-label="contact button"
               href="mailto: aaron.b.grant@gmail.com"
-              color="transparent"
+              color="primary"
               className={classes.navLink}
             >
               <EmailIcon />
